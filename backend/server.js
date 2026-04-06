@@ -27,9 +27,15 @@ app.use(
 /* =========================
    CORS (FIX COMPLETO)
 ========================= */
+const envOrigins = (process.env.CORS_ORIGINS || '')
+  .split(',')
+  .map((o) => o.trim())
+  .filter(Boolean);
+
 const allowedOrigins = [
   'http://localhost:3000', // Create React App
   'http://localhost:5173', // Vite
+  ...envOrigins,
 ];
 
 app.use(
